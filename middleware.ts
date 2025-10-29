@@ -25,13 +25,18 @@ function extractSubdomain(request: NextRequest): string | null {
   // Production environment
   const rootDomainFormatted = rootDomain.split(':')[0];
 
-  // Handle preview deployment URLs (tenant---branch-name.vercel.app)
+  // Handle Vercel preview deployments (tenant---branch-name.vercel.app)
   if (hostname.includes('---') && hostname.endsWith('.vercel.app')) {
     const parts = hostname.split('---');
     return parts.length > 0 ? parts[0] : null;
   }
 
-  // Regular subdomain detection
+  // Handle main Vercel app domain (emptybucket.vercel.app)
+  if (hostname === 'emptybucket.vercel.app') {
+    return null; // This is the root domain
+  }
+
+  // Regular subdomain detection for custom domains
   const isSubdomain =
     hostname !== rootDomainFormatted &&
     hostname !== `www.${rootDomainFormatted}` &&

@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "app/s/[subdomain]/page.tsx": {
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/$1"
+    }
+  ]
+}
