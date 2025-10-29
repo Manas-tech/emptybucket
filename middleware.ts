@@ -31,8 +31,8 @@ function extractSubdomain(request: NextRequest): string | null {
     return parts.length > 0 ? parts[0] : null;
   }
 
-  // Handle main Vercel app domain (emptybucket.vercel.app)
-  if (hostname === 'emptybucket.vercel.app') {
+  // Handle main Vercel app domain
+  if (hostname === 'subdomain-platform.vercel.app') {
     return null; // This is the root domain
   }
 
